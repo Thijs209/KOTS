@@ -1,0 +1,32 @@
+.scoreboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  align-items: center;
+  margin-top: .5em;
+}
+
+.scoreboardRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 95%;
+  margin: 0 auto;
+  color: white;
+  border-radius: 1em;
+}
+
+.groupName {
+  display: flex;
+  gap: 1em;
+}
+
+.vliet {
+  border-bottom: 5px solid purple;
+  background: red;
+}
+
+.asopos {
+  border-bottom: 5px solid red;
+  background: purple;
+}
