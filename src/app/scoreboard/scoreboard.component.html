@@ -1,10 +1,11 @@
 <div class="scoreboardContainer">
   <div
     class="scoreboardRow"
-    *ngFor= "let group of sortedGroups; index as i"
+    *ngFor= "let group of groups$ | async; index as i"
     [ngClass]="{
-        asopos: i % 2 == 0,
-        vliet: i % 2 == 1
+        asopos: i % 2 == 1,
+        vliet: i % 2 == 0,
+        firstPlace: i == 0
       }">
     <div class="groupName">
       <h2>#{{i+1}}</h2>

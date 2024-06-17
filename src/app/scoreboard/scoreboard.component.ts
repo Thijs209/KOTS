@@ -1,29 +1,32 @@
-import { Component } from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {Component, inject} from '@angular/core';
+import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
+import {Observable} from "rxjs";
+import {collectionData, Firestore, orderBy, query, collection} from "@angular/fire/firestore";
+import {ref} from "@angular/fire/database";
+
+interface Group {
+  name: string;
+  points: number;
+}
 
 @Component({
   selector: 'app-scoreboard',
   standalone: true,
   imports: [
     NgForOf,
-    NgClass
+    NgClass,
+    AsyncPipe,
   ],
   templateUrl: './scoreboard.component.html',
   styleUrl: './scoreboard.component.css'
 })
 export class ScoreboardComponent {
-  groups = [
-    {name: 'Group 1', points: 10},
-    {name: 'Group 2', points: 14},
-    {name: 'Group 3', points: 25},
-    {name: 'Group 4', points: 9},
-    {name: 'Group 5', points: 7},
-    {name: 'Group 6', points: 12},
-    {name: 'Group 7', points: 18},
-    {name: 'Group 8', points: 21},
-    {name: 'Group 9', points: 3},
-    {name: 'Group 10', points: 17}
-  ]
+  firestore = inject(Firestore);
+  groups$: Observable<any[]>;
 
-  sortedGroups = this.groups.sort((a, b) => b.points - a.points);
+  constructor() {
+    const groups = collection(this.firestore, 'groups');
+    const refq = query(groups, orderBy('points', 'desc'));
+    this.groups$ = collectionData(refq);
+  }
 }

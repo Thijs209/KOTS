@@ -1,0 +1,10 @@
+.title {
+  width: 100%;
+  font-size: 4em;
+  text-align: center;
+  background-image: linear-gradient(to left, red, white, purple);
+  color: goldenrod;
+  border-bottom-left-radius: .3em;
+  border-bottom-right-radius: .3em;
+  padding: .25em 0;
+}

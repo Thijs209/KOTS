@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: .5em;
   align-items: center;
-  margin-top: .5em;
+  margin: .5em 0;
 }
 
 .scoreboardRow {
@@ -14,6 +14,7 @@
   margin: 0 auto;
   color: white;
   border-radius: 1em;
+  transition: 1s;
 }
 
 .groupName {
@@ -29,4 +30,19 @@
 .asopos {
   border-bottom: 5px solid red;
   background: purple;
+}
+
+.firstPlace {
+  border-bottom: 5px solid darkgoldenrod;
+  background: goldenrod;
+}
+
+.secondPlace {
+  border-bottom: 5px solid #d1d1d1;
+  background: silver;
+}
+
+.thirdPlace {
+  border-bottom: 5px solid #8b4513;
+  background: #cd7f32;
 }

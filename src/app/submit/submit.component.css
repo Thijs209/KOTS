@@ -1,0 +1,69 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 2em auto;
+  position: relative;
+}
+
+.input {
+  padding: .7em;
+  font-size: 1.5em;
+  border-radius: 1em;
+}
+
+label {
+  position: absolute;
+  top: -.6em;
+  background: white;
+  left: .7em;
+  font-size: 1.2em;
+}
+
+.container {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  font-size: 1.5em;
+  padding: .5em 1em;
+  border-radius: 1em;
+  background: purple;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background: #6a0dad;
+}
+
+button:active {
+  background: #4a0d6a;
+}
+
+button:disabled {
+  background: grey;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+  margin: 2em auto;
+}
+
+.secondary {
+  background: red;
+}
+
+.secondary:hover {
+  background: #ad0d0d;
+}
+
+.secondary:active {
+  background: #6a0d0d;
+}

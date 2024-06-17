@@ -1,1 +1,23 @@
-<p>submit works!</p>
+<div>
+  <app-header></app-header>
+  <div class="container">
+    <div class="inputContainer">
+      <label>Punten:</label>
+      <input (keyup)="changePoints($event)" class="input" type="number" placeholder="123" />
+    </div>
+    <div class="inputContainer">
+      <label>Groep:</label>
+      <select (change)="changeGroup($event)" class="input">
+        <option disabled selected value> -- kies een optie -- </option>
+        <option *ngFor="let group of groups$|async">{{group.name}}</option>
+      </select>
+    </div>
+    <div class="buttonsContainer">
+      <button class="secondary" (click)="subtractPoints()" [disabled]="points == 0 || group == '' ">Aftrekken</button>
+      <button (click)="addPoints()" [disabled]="points == 0 || group == '' ">Toevoegen</button>
+    </div>
+  </div>
+<!--  <div class = 'addToaster' *ngIf="showAddToaster">-->
+<!--    <p class="toaster">{{}}</p>-->
+<!--  </div>-->
+</div>
