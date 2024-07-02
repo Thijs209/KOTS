@@ -3,13 +3,13 @@
   <div class="container">
     <div class="inputContainer">
       <label>Punten:</label>
-      <input (keyup)="changePoints($event)" class="input" type="number" placeholder="123" />
+      <input (keyup)="changePoints($event)" [value]="points" class="input" type="number" placeholder="123" />
     </div>
     <div class="inputContainer">
       <label>Groep:</label>
       <select (change)="changeGroup($event)" class="input">
-        <option disabled selected value> -- kies een optie -- </option>
-        <option *ngFor="let group of groups$|async">{{group.name}}</option>
+        <option disabled [defaultSelected]="true" [selected]="group == ''" value> -- kies een optie -- </option>
+        <option *ngFor="let g of groups$|async" [value]="g.name" [selected]="g.name == group">{{g.name}}</option>
       </select>
     </div>
     <div class="buttonsContainer">
@@ -17,7 +17,5 @@
       <button (click)="addPoints()" [disabled]="points == 0 || group == '' ">Toevoegen</button>
     </div>
   </div>
-<!--  <div class = 'addToaster' *ngIf="showAddToaster">-->
-<!--    <p class="toaster">{{}}</p>-->
-<!--  </div>-->
+  <app-toaster *ngIf="showToaster"></app-toaster>
 </div>

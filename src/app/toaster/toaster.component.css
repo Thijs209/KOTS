@@ -1,0 +1,18 @@
+.container{
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  height: 10%;
+  background: limegreen;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+p{
+  font-size: 1.5em;
+  margin: 0;
+  padding: 1em;
+  color: white;
+  text-align: center;
+}

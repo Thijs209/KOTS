@@ -1,7 +1,7 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 90%;
   margin: 2em auto;
   position: relative;
 }
@@ -51,9 +51,9 @@ button:disabled {
 
 .buttonsContainer {
   display: flex;
-  justify-content: space-around;
-  width: 40%;
-  margin: 2em auto;
+  justify-content: space-between;
+  width: 90%;
+  margin: 2em 0;
 }
 
 .secondary {
@@ -66,4 +66,8 @@ button:disabled {
 
 .secondary:active {
   background: #6a0d0d;
+}
+
+.secondary:disabled {
+  background: grey;
 }
