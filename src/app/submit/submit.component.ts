@@ -29,6 +29,7 @@ export class SubmitComponent {
   groups$: Observable<Group[]>;
   groups: Group[] = [];
   showToaster = false;
+  reason= "";
 
   constructor(public dataService: DataService, private toastr: ToastrService) {
     const groups = collection(this.firestore, 'groups');
@@ -37,6 +38,7 @@ export class SubmitComponent {
 
   changePoints($event: any) {
     this.points = $event.target.value;
+    console.log(this.groups)
   }
 
   changeGroup($event: any) {
@@ -47,6 +49,13 @@ export class SubmitComponent {
     this.groups$.pipe(take(1)).subscribe((group) => {
       group.find((g: Group) => {
         if (g.name === this.group) {
+          setDoc(
+            doc(this.firestore, 'reasons'), {
+              group: this.group,
+              reason: this.reason,
+              points: this.points
+            }
+          ).then(() => {console.log('succes')});
           setDoc(
             doc(this.firestore, 'groups', g.name), {
               name: g.name,
@@ -69,6 +78,13 @@ export class SubmitComponent {
       group.find((g: Group) => {
         if (g.name === this.group) {
           setDoc(
+            doc(this.firestore, 'reasons'), {
+              group: this.group,
+              reason: this.reason,
+              points: this.points
+            }
+          )
+          setDoc(
             doc(this.firestore, 'groups', g.name), {
               name: g.name,
               points: Number(Number(g.points) - Number(this.points))
@@ -84,9 +100,14 @@ export class SubmitComponent {
       });
     })
   }
+
+  changeReason($event: any) {
+    this.reason = $event.target.value;
+  }
 }
 
 export interface Group {
   name: string;
-  points: number;
+  points: number
+  reason: string
 }
