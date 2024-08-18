@@ -1,0 +1,32 @@
+.card {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 1em;
+  padding: .5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "date name points"
+    "reason reason reason";
+  flex-direction: row;
+  justify-items: center;
+}
+
+p {
+  grid-area: reason;
+  width: 100%;
+  font-size: 1.1em;
+}
+
+b {
+  font-size: 1.1em;
+  width: fit-content;
+}
+
+.asopos_border {
+  border-bottom: purple 5px solid;
+}
+
+.vliet_border {
+  border-bottom: red 5px solid;
+}

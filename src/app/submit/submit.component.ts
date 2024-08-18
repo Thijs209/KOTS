@@ -1,6 +1,16 @@
 import {Component, inject} from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
-import {collection, collectionData, doc, Firestore, orderBy, query, setDoc, updateDoc} from "@angular/fire/firestore";
+import {
+  addDoc,
+  collection,
+  collectionData,
+  doc,
+  Firestore,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc
+} from "@angular/fire/firestore";
 import {Observable, take} from "rxjs";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {DataService} from "../services/data.service";
@@ -29,6 +39,7 @@ export class SubmitComponent {
   groups$: Observable<Group[]>;
   groups: Group[] = [];
   showToaster = false;
+  reason = '';
 
   constructor(public dataService: DataService, private toastr: ToastrService) {
     const groups = collection(this.firestore, 'groups');
@@ -47,6 +58,15 @@ export class SubmitComponent {
     this.groups$.pipe(take(1)).subscribe((group) => {
       group.find((g: Group) => {
         if (g.name === this.group) {
+          const date = new Date();
+          setDoc(
+            doc(this.firestore, 'transactions', date.toLocaleString()), {
+              group: g.name,
+              points: Number(this.points),
+              reason: this.reason,
+              timestamp: date.toLocaleString()
+            }
+          );
           setDoc(
             doc(this.firestore, 'groups', g.name), {
               name: g.name,
@@ -57,6 +77,7 @@ export class SubmitComponent {
               positionClass: "toast-bottom-center"
             });
             this.group = '';
+            this.reason = '';
             this.points = null;
           });
         }
@@ -68,6 +89,15 @@ export class SubmitComponent {
     this.groups$.pipe(take(1)).subscribe((group) => {
       group.find((g: Group) => {
         if (g.name === this.group) {
+          const date = new Date();
+          setDoc(
+            doc(this.firestore, 'transactions', date.toLocaleString()), {
+              group: g.name,
+              points: -Number(this.points),
+              reason: this.reason,
+              timestamp: date.toLocaleString()
+            }
+          );
           setDoc(
             doc(this.firestore, 'groups', g.name), {
               name: g.name,
@@ -79,10 +109,15 @@ export class SubmitComponent {
             });
             this.group = '';
             this.points = null
+            this.reason = '';
           });
         }
       });
     })
+  }
+
+  changeReason($event: any) {
+    this.reason = $event.target.value;
   }
 }
 

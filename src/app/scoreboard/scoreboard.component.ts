@@ -23,10 +23,14 @@ interface Group {
 export class ScoreboardComponent {
   firestore = inject(Firestore);
   groups$: Observable<any[]>;
+  transactions: Observable<Group[]>;
 
   constructor() {
     const groups = collection(this.firestore, 'groups');
     const refq = query(groups, orderBy('points', 'desc'));
     this.groups$ = collectionData(refq);
+
+    const transactions = collection(this.firestore, 'transactions');
+    this.transactions = collectionData(transactions) as Observable<Group[]>;
   }
 }

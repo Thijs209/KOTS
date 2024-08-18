@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="../scoreboard/scoreboard.component.css">
+<div>
+  <app-header></app-header>
+  <div
+    *ngFor="let transaction of transactions$ | async; index as i"
+    [ngClass]="{
+      asopos_border: i % 2 == 0,
+      vliet_border: i % 2 == 1
+    }"
+  >
+    <div class="card">
+      <b class="time">{{transaction.timestamp.split(',')[1]}}</b>
+      <b class="group">{{transaction.group}}</b>
+      <b class="points">{{transaction.points}}</b>
+      <p>{{transaction.reason}}</p>
+    </div>
+  </div>
+</div>
