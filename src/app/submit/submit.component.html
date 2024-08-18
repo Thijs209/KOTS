@@ -12,18 +12,6 @@
         <option *ngFor="let g of groups$|async" [value]="g.name" [selected]="g.name == group">{{g.name}}</option>
       </select>
     </div>
-    <div class="inputContainer">
-      <label>Reden:</label>
-      <textarea
-        (keyup)="changeReason($event)"
-        [value]="reason" class="input"
-        placeholder="Reden"
-        name="reason"
-        cols="20"
-        rows="10"
-      >
-      </textarea>
-    </div>
     <div class="buttonsContainer">
       <button class="secondary" (click)="subtractPoints()" [disabled]="points == 0 || group == '' ">Aftrekken</button>
       <button (click)="addPoints()" [disabled]="points == 0 || group == '' ">Toevoegen</button>
